@@ -1,8 +1,6 @@
 # KeePassPasskey
 
-[![GitHub](https://img.shields.io/badge/GitHub-yusei36%2FKeePassPasskey-black?logo=github)](https://github.com/yusei36/KeePassPasskey)
-[![GitHub Release](https://img.shields.io/github/v/release/yusei36/KeePassPasskey?include_prereleases)](https://github.com/yusei36/KeePassPasskey/releases/latest)
-[![GitHub Release Date](https://img.shields.io/github/release-date-pre/yusei36/KeePassPasskey)](https://github.com/yusei36/KeePassPasskey/releases/latest)
+**[Download](https://github.com/yusei36/KeePassPasskey/releases/latest)** | **[Installation](#installation)** | **[User Guide](docs/user-guide.md)** | [![GitHub](https://img.shields.io/badge/GitHub-yusei36%2FKeePassPasskey-black?logo=github)](https://github.com/yusei36/KeePassPasskey) [![GitHub Release](https://img.shields.io/github/v/release/yusei36/KeePassPasskey?include_prereleases)](https://github.com/yusei36/KeePassPasskey/releases/latest) [![GitHub Release Date](https://img.shields.io/github/release-date-pre/yusei36/KeePassPasskey)](https://github.com/yusei36/KeePassPasskey/releases/latest)
 
 A KeePass plugin that turns KeePass into a native Windows 11 passkey provider. Websites and apps that support passkeys work automatically - no browser extension required.
 
@@ -50,6 +48,8 @@ KeePassPasskeyProvider.exe
 5. Launch **KeePassPasskey** from the Start menu, click **Advanced Passkey Options** in the app and enable **KeePassPasskey**.
 6. Both status indicators in the **KeePassPasskey** app should show green.
 7. (Optional) Remove the certificate: open **certlm.msc** → **Trusted People** → **Certificates**, find **KeePassPasskey**, and delete it. The certificate is only needed during installation.
+
+Once installed, see the [User Guide](docs/user-guide.md) to get started.
 
 ## Building
 
@@ -102,8 +102,8 @@ Passkeys are stored as standard KeePass entries using [KeePassXC's passkey field
 | `KPEX_PASSKEY_RELYING_PARTY` | Relying party ID (e.g. `github.com`) |
 | `KPEX_PASSKEY_USERNAME` | User name from registration |
 | `KPEX_PASSKEY_USER_HANDLE` | Base64url user handle |
-| `KPEX_PASSKEY_FLAG_BE` | Backup Eligibility flag - always `1` |
-| `KPEX_PASSKEY_FLAG_BS` | Backup State flag - always `1` |
+| `KPEX_PASSKEY_FLAG_BE` | Backup Eligibility flag, always `1` |
+| `KPEX_PASSKEY_FLAG_BS` | Backup State flag, always `1` |
 
 Credentials created here can be read by KeePassXC and vice versa. Three algorithms are supported: **ES256** (EC P-256), **EdDSA** (Ed25519), and **RS256** (RSA-2048). The algorithm is encoded in the PKCS#8 OID and requires no separate field, matching KeePassXC's storage format exactly.
 
