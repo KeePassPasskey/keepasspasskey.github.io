@@ -6,6 +6,8 @@
 
 A KeePass plugin that turns KeePass into a native Windows 11 passkey provider. Websites and apps that support passkeys work automatically - no browser extension required.
 
+<img src="docs/images/passkey-creation-step2.png" width="450" alt="Windows passkey provider list with KeePassPasskey selected">
+
 ## Requirements
 
 - Windows 11 24H2 or later
@@ -41,6 +43,8 @@ KeePassPasskeyProvider.exe
 4. Click **Advanced Passkey Options** in the app and enable **KeePassPasskey**.
 5. Both status indicators in the **KeePassPasskey** app should show green.
 
+<img src="docs/images/keepasspasskey-app-status.png" width="450" alt="KeePassPasskey app showing both status indicators green">
+
 ### Option B - manual
 
 1. Download `KeePassPasskey-<version>.zip` from the [releases page](https://github.com/yusei36/KeePassPasskey/releases) and extract it.
@@ -52,35 +56,6 @@ KeePassPasskeyProvider.exe
 7. (Optional) Remove the certificate: open **certlm.msc** → **Trusted People** → **Certificates**, find **KeePassPasskey**, and delete it. The certificate is only needed during installation.
 
 Once installed, see the [User Guide](docs/user-guide.md) to get started.
-
-## Building
-
-### Prerequisites
-
-| Requirement | Notes |
-|---|---|
-| Visual Studio 2026 | With .NET desktop development workload |
-| Windows SDK 10.0.26100.7175+ | Required for wapproj build and code signing |
-| .NET 10 SDK | For KeePassPasskeyProvider |
-| .NET Framework 4.8 SDK | For KeePassPasskeyPlugin |
-| KeePass.exe (2.54, compile reference) | Place at `build\KeePass.exe` - minimum supported version, used only for compilation |
-| KeePass.exe (current, for debugging) | Place at `build\KeePass\KeePass.exe` - your installed/current version, used to launch KeePass during development |
-
-```powershell
-# Compile-time reference - KeePass 2.54 (minimum supported version)
-Copy-Item "path\to\KeePass-2.54\KeePass.exe" build\
-
-# Debug/run target - your current KeePass installation
-Copy-Item "C:\Program Files\KeePass Password Safe 2\KeePass.exe" build\KeePass\
-```
-
-Then run the build script as Administrator - builds the MSIX, signs it, and installs:
-
-```powershell
-.\scripts\Build-AndInstall.ps1 -Configuration Release
-```
-
-Copy the DLLs from `build\Release\` to a `KeePassPasskeyPlugin` folder inside your KeePass `Plugins` folder (e.g. `C:\Program Files\KeePass Password Safe 2\Plugins\KeePassPasskeyPlugin\`) and (re)start KeePass. Then click **Advanced Passkey Options** in the app and enable **KeePassPasskey**.
 
 ### Manual registration (CLI alternative)
 
@@ -136,6 +111,35 @@ scripts/
   Publish-Package.ps1           Build Release, sign, and produce distributable zip
   Install.bat                   End-user installer (shipped inside the release zip)
 ```
+
+## Building
+
+### Prerequisites
+
+| Requirement | Notes |
+|---|---|
+| Visual Studio 2026 | With .NET desktop development workload |
+| Windows SDK 10.0.26100.7175+ | Required for wapproj build and code signing |
+| .NET 10 SDK | For KeePassPasskeyProvider |
+| .NET Framework 4.8 SDK | For KeePassPasskeyPlugin |
+| KeePass.exe (2.54, compile reference) | Place at `build\KeePass.exe` - minimum supported version, used only for compilation |
+| KeePass.exe (current, for debugging) | Place at `build\KeePass\KeePass.exe` - your installed/current version, used to launch KeePass during development |
+
+```powershell
+# Compile-time reference - KeePass 2.54 (minimum supported version)
+Copy-Item "path\to\KeePass-2.54\KeePass.exe" build\
+
+# Debug/run target - your current KeePass installation
+Copy-Item "C:\Program Files\KeePass Password Safe 2\KeePass.exe" build\KeePass\
+```
+
+Then run the build script as Administrator - builds the MSIX, signs it, and installs:
+
+```powershell
+.\scripts\Build-AndInstall.ps1 -Configuration Release
+```
+
+Copy the DLLs from `build\Release\` to a `KeePassPasskeyPlugin` folder inside your KeePass `Plugins` folder (e.g. `C:\Program Files\KeePass Password Safe 2\Plugins\KeePassPasskeyPlugin\`) and (re)start KeePass. Then click **Advanced Passkey Options** in the app and enable **KeePassPasskey**.
 
 ## License
 
