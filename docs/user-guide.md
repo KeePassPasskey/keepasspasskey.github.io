@@ -2,19 +2,6 @@
 
 KeePassPasskey turns KeePass into a native Windows 11 passkey provider. Once installed, websites and apps that support passkeys will offer KeePassPasskey as a storage option, and passkeys are saved directly into your KeePass database.
 
-## Table of Contents
-
-- [Prerequisites](#prerequisites)
-- [Installation](#installation)
-- [Updates](#updates)
-- [Creating a passkey](#creating-a-passkey)
-- [Signing in with a passkey](#signing-in-with-a-passkey)
-  - [Login with a passkey instead of a password](#login-with-a-passkey-instead-of-a-password)
-  - [Login with a password and passkey as a second factor](#login-with-a-password-and-passkey-as-a-second-factor)
-- [Managing passkeys in KeePass](#managing-passkeys-in-keepass)
-- [Settings](#settings)
-- [Troubleshooting](#troubleshooting)
-
 ## Prerequisites
 
 - Windows 11 24H2 or later
@@ -46,15 +33,17 @@ A list of available passkey providers appears. Select **KeePassPasskey**.
 
 **Step 3: Confirm in the KeePassPasskey notification**
 
-A notification from KeePassPasskey appears in the taskbar. Click **Create passkey** to save the passkey to your KeePass database.
+A notification from KeePassPasskey appears in the taskbar. Click **Create passkey** to save the passkey to your KeePass database. If more than one KeePass database is unlocked, a database picker appears first. Select the database you want to save to.
 
-![KeePassPasskey notification with "Passkey creation requested" and the Create passkey button](images/passkey-creation-step3.png)
+<img src="images/passkey-creation-step3.png" width="300" alt="KeePassPasskey notification with &quot;Passkey creation requested&quot; and the Create passkey button">
+
+<img src="images/passkey-creation-select-db.png" width="300" alt="KeePassPasskey dialog for selecting which open KeePass database to save the passkey to">
 
 **Step 4: Passkey saved in KeePass**
 
-The passkey is now stored as an entry in the **KeePass Passkeys** group in your open KeePass database.
+The passkey is now stored as an entry in the **Passkeys** group in your open KeePass database.
 
-<img src="images/passkey-creation-step4.png" width="450" alt="KeePass database showing the newly created passkey entry in the KeePass Passkeys group">
+<img src="images/passkey-creation-step4.png" width="450" alt="KeePass database showing the newly created passkey entry in the Passkeys group">
 
 ## Signing in with a passkey
 
@@ -78,7 +67,7 @@ If you did not use autofill and have multiple passkeys for this site, Windows sh
 
 A KeePassPasskey notification appears in the taskbar. Click **Approve** to confirm.
 
-![KeePassPasskey notification with "Authentication requested" and the Approve button](images/passkey-signin-approve.png)
+<img src="images/passkey-signin-approve.png" width="300" alt="KeePassPasskey notification with &quot;Authentication requested&quot; and the Approve button">
 
 ### Login with a password and passkey as a second factor
 
@@ -102,19 +91,19 @@ If you have multiple passkeys for this site, Windows shows a list. Select the on
 
 A KeePassPasskey notification appears in the taskbar. Click **Approve** to confirm.
 
-![KeePassPasskey notification with "Authentication requested" and the Approve button](images/passkey-signin-approve.png)
+<img src="images/passkey-signin-approve.png" width="300" alt="KeePassPasskey notification with &quot;Authentication requested&quot; and the Approve button">
 
 ## Managing passkeys in KeePass
 
-Passkeys are stored as standard KeePass entries in the **KeePass Passkeys** group.
+Passkeys are stored as standard KeePass entries in the **Passkeys** group.
 
-When creating a passkey, it is saved to the currently selected KeePass database. During sign-in, KeePassPasskey searches all open databases, so you do not need to switch databases before signing in. If a passkey ends up in the wrong database, you can move it via **Entry → Data Exchange → Copy/Paste Entry**.
+When creating a passkey and multiple databases are open, KeePassPasskey will ask you to choose which database to save it to (see step 4 in [Creating a passkey](#creating-a-passkey)). During sign-in, KeePassPasskey searches all open databases, so you do not need to switch databases before signing in. If a passkey ends up in the wrong database, you can move it via **Entry → Data Exchange → Copy/Paste Entry**.
 
-Passkey entries can be freely renamed or moved to any group in KeePass without affecting functionality. The **KeePass Passkeys** group itself can also be renamed. Note that if a group has searching disabled in KeePass, passkey entries inside it will not be found by KeePassPasskey. The KeePass Recycle Bin has searching disabled by default, so restoring a deleted passkey entry from there requires moving it to another group first.
+Passkey entries can be freely renamed or moved to any group in KeePass without affecting functionality. The **Passkeys** group itself can also be renamed. Note that if a group has searching disabled in KeePass, passkey entries inside it will not be found by KeePassPasskey. The KeePass Recycle Bin has searching disabled by default, so restoring a deleted passkey entry from there requires moving it to another group first.
 
 To delete a passkey, delete its KeePass entry.
 
-If multiple entries exist for the same site, KeePassPasskey uses the first one it finds during sign-in. Avoid duplicates by checking the **KeePass Passkeys** group before registering again on a site.
+If multiple entries exist for the same site, KeePassPasskey uses the first one it finds during sign-in. Avoid duplicates by checking the **Passkeys** group before registering again on a site.
 
 Passkeys created by [KeePassXC](https://keepassxc.org/) are stored in the same format and are fully compatible.
 
@@ -136,26 +125,26 @@ Each passkey entry contains these custom fields:
 
 Open the KeePassPasskey app from the Start menu and navigate to **Settings**.
 
-### User Verification
+### Appearance
+
+**Theme**: choose between System (follows Windows), Light, or Dark.
+
+**System tray icon**: when enabled, closing the window keeps the app running in the tray. The passkey provider continues to work regardless of whether the app is open.
+
+### Notifications & User Verification
 
 Controls how KeePassPasskey confirms your identity before completing a passkey operation.
 
 | Option | Behavior |
 |---|---|
-| Notification | Shows a notification you must approve (default) |
+| Notification | Shows a notification you must approve |
 | Windows Hello | Requires Windows Hello (PIN, fingerprint, or face) |
-| Both | Requires both a notification approval and Windows Hello |
+| Both | Requires both a notification approval and Windows Hello (default) |
 | None | No confirmation required: passkey operations complete silently |
 
-Separate settings exist for **Registration** (creating a passkey) and **Sign-in** (using a passkey). The **Notification timeout** controls how long the notification stays open before the operation is cancelled (default: 30 seconds). This timeout only applies when the verification mode includes **Notification**.
-
-### Notifications
+Separate settings exist for **Registration** (creating a passkey) and **Sign-in** (using a passkey). The **Approval timeout** controls how long the notification stays open before the operation is cancelled (default: 30 seconds). This timeout only applies when the approval mode includes **Notification**.
 
 **Show error notifications**: when enabled, KeePassPasskey shows a detailed notification if a passkey operation fails. Windows always shows its own generic error regardless of this setting.
-
-### Appearance
-
-Choose between System (follows Windows), Light, or Dark theme.
 
 ### Advanced
 
@@ -163,9 +152,9 @@ These settings are rarely needed. Leave them at their defaults unless you are tr
 
 | Setting | Description |
 |---|---|
-| Credential sync interval | How often passkey metadata is synced to the Windows autofill cache. Set to 0 to disable. **Be aware:** when disabled, passkeys will not appear in autofill suggestions or in the selection list when multiple passkeys exist for a site. |
 | Log level | Verbosity of log files. Increase to Debug when reporting a bug. |
 | Status refresh interval | How often the app polls for connection status. |
+| Credential sync interval | How often passkey metadata is synced to the Windows autofill cache. Set to 0 to disable. **Be aware:** when disabled, passkeys will not appear in autofill suggestions or in the selection list when multiple passkeys exist for a site. |
 | Max credential cache sync retries | After this many sync failures the background sync pauses and resumes on the next passkey request. |
 
 ## Troubleshooting
@@ -184,7 +173,7 @@ These settings are rarely needed. Leave them at their defaults unless you are tr
 
 **I tried creating a passkey but it failed saying one already exists**
 
-- KeePass already has a passkey for that site with a credential ID the website recognises. Open the **KeePass Passkeys** group, delete the existing entry for that site, and try registering again.
+- KeePass already has a passkey for that site with a credential ID the website recognises. Open the **Passkeys** group, delete the existing entry for that site, and try registering again.
 
 **Passkey prompts never show the Windows provider selection or KeePassPasskey**
 
