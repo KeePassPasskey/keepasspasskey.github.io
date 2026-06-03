@@ -3,8 +3,7 @@
 &lt;h2 id="requirements"&gt;Requirements&lt;a class="anchor" href="#requirements"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://keepass.info/"&gt;KeePass&lt;/a&gt; 2.54 or later&lt;/li&gt;
-&lt;li&gt;Windows 11 24H2 or later&lt;/li&gt;
-&lt;li&gt;TPM 2.0 (constrained by Windows for third-party passkey providers)&lt;/li&gt;
+&lt;li&gt;Windows 11 24H2 or later, with TPM enabled (&lt;a href="#why-is-a-tpm-required"&gt;why?&lt;/a&gt;)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="installation"&gt;Installation&lt;a class="anchor" href="#installation"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;See the &lt;a href="../../#installation"&gt;installation instructions in the README&lt;/a&gt; for the full setup steps. After installation, both status indicators in the KeePassPasskey app should show green. You can open the app at any time from the Start menu by searching for &amp;ldquo;KeePassPasskey&amp;rdquo; to check or adjust the configuration, or for debugging purposes. You do not need to keep it open: the passkey provider runs as a Windows integration in the background and is activated by Windows whenever a passkey operation is requested.&lt;/p&gt;</description></item></channel></rss>
